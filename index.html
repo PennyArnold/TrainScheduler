@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train Scheduler</title>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron  text-center bg-dark">
+            <div class="row">
+                <div class="col-12 text-center text-white">
+                    <h1>Train Scheduler</h1>
+                    <h3>Find the train schedule that meets your commuting needs.</h3>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+                <div class="col-12">
+                     <div class="panel panel-default text-white bg-secondary">
+                        <div class="panel-heading"></div>
+                        <div class="panel-title ml-2">Current Train Schedule</div>
+                     </div>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                    <table class="table" id="trainTable">
+                            <thead>
+                              <tr>
+                                <th scope="col">Train Name</th>
+                                <th scope="col">Destination</th>
+                                <th scope="col">Frequency</th>
+                                <th scope="col">Next Arrival</th>
+                                <th scope="col">Minutes Away</th>
+                              </tr>
+                            </thead>
+                            <tbody id="trainRow">
+
+                            </tbody>
+                        
+                    </table>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-12">
+                     <div class="panel panel-default text-white bg-secondary">
+                        <div class="panel-heading"></div>
+                        <div class="panel-title ml-2">Add Train</div>
+                     </div>
+                </div>
+                <div class="col-12">
+                        <div class="panel-body border">
+                                <form> 
+                                        <div class="form-group">
+                                          <label for="nameInput">Train Name</label>
+                                          <input type="text" class="form-control" id="nameInput">
+                                        </div>
+
+                                        <div class="form-group">
+                                                <label for="destinationInput">Destination</label>
+                                                <input type="text" class="form-control" id="destinationInput">
+                                        </div>
+                                        <div class="form-group">
+                                                <label for="timeInput">First Train Time (MM/DD/YYYY)</label>
+                                                <input type="date" class="form-control" id="timeInput">
+                                        </div>
+                                        <div class="form-group">
+                                                <label for="frequencyInput">Frequency (minutes)</label>
+                                                <input type="number" class="form-control" id="frequencyInput">
+                                        </div>
+
+                                        <button type="submit" class="btn btn-secondary" id="submitBtn">Submit</button>
+                                      </form>
+                        </div>
+                </div>
+        </div>
+      
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</body>
+</html>
