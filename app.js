@@ -53,14 +53,25 @@ database.ref().on("child_added", function(childSnapshot) {
     console.log(childSnapshot.val().date);
 
 //need to convert the First train time into minutes away using the moments methodology
-    var minutesAway = childSnapshot.val().time + childSnapshot.val().frequency;
-    console.log("minutes away", minutesAway);
+   
+   
+    // Change year so first train comes before now
+    var firstTrainNew = moment(childSnapshot.val().time, "hh:mm").subtract(1, "years");
+    // Difference between the current and firstTrain
+    var diffTime = moment().diff(moment(firstTrainNew), "minutes");
+    var remainder = diffTime % childSnapshot.val().frequency;
+    // Minutes until next train
+    var minAway = moment(childSnapshot.val().frequency - remainder);
+    // Next train time
+    var nextTrain = moment().add(minAway, "minutes");
+    nextTrain = moment(nextTrain).format("hh:mm");
+
 
 
 //append data to the columns to display the schedule created from the submitted data stored on firebase
     $("#trainRow").append("<tr><td>"+ childSnapshot.val().name + "</td><td>"+ childSnapshot.val().destination +
-    "</td><td>"+ childSnapshot.val().frequency +"</td><td>"+ childSnapshot.val().time +
-    "</td><td>" + minutesAway + "</td>")
+    "</td><td>"+ childSnapshot.val().frequency +"</td><td>"+ nextTrain +
+    "</td><td>" + minAway + "</td>")
 
 });
 
