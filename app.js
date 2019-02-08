@@ -56,17 +56,19 @@ database.ref().on("child_added", function(childSnapshot) {
    
    
     // Change year so first train comes before now
-    var firstTrainNew = moment(childSnapshot.val().time, "hh:mm").subtract(1, "years");
+    var firstTrainNew = moment(childSnapshot.val().time, "hh:mm").subtract(1, "years").format("X");
     // Difference between the current and firstTrain
-    var diffTime = moment().diff(moment(firstTrainNew), "minutes");
+    var diffTime = moment().diff(moment.unix(firstTrainNew),"minutes")
     var remainder = diffTime % childSnapshot.val().frequency;
     // Minutes until next train
-    var minAway = moment(childSnapshot.val().frequency - remainder);
+    var minAway = childSnapshot.val().frequency - remainder;
     // Next train time
-    var nextTrain = moment().add(minAway, "minutes");
-    nextTrain = moment(nextTrain).format("hh:mm");
+    var nextTrain = moment().add(minAway,"m").format("hh:mm A");
 
-
+    //var firstTrain = moment(trainTime,"HH:mm").subtract(1,"years").format("X");
+    //var remainder = moment().diff(moment.unix(firstTrain),"minutes") % frequency;
+              // var minutes = frequency - remainder;
+              // var arrival = moment().add(minutes,"m").format("hh:mm A");
 
 //append data to the columns to display the schedule created from the submitted data stored on firebase
     $("#trainRow").append("<tr><td>"+ childSnapshot.val().name + "</td><td>"+ childSnapshot.val().destination +
@@ -76,5 +78,3 @@ database.ref().on("child_added", function(childSnapshot) {
 });
 
    
-
-
