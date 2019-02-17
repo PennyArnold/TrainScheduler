@@ -1,5 +1,8 @@
 # TrainScheduler
-Webpage that displays a current train schedule based on info submitted by the user.
+Deployed site: https://pennyarnold.github.io/TrainScheduler/
+
+Webpage that displays a current train schedule based on information submitted by the user.
+
 The train route is stored in firebase and displays on the webpage in the table and provides the following information:
 name, destination, frequency, next arrival and minutes away
 
